@@ -8,23 +8,16 @@ class ProdutoController extends Controller
 {
     public function index()
     {
-        $produtos = 
-        [
-            (object)['vinho' => 'Gato Preto', 'uva' => 'Pinot Noir', 'tipo' => 'Tinto'],
-            (object)['vinho' => 'Cassilero del Diablo', 'uva' => 'Malbec', 'tipo' => 'Rose']
-        ];
-
-        return view('produto.index', compact('produtos'));
+        echo("arquivo index");
     }
 
-    public function criar(Request $req)
+    public function adicionar()
     {
-        dd($req->all());
-        return 'criar';
+        echo("adicionado");
     }
 
-    public function editar()
+    public function Salvar()
     {
-        return "Editar";
+        echo("salvo");
     }
 }

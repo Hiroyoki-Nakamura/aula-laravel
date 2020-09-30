@@ -29,11 +29,10 @@ Route::get('/', function () {
 
 // Route::put('/contato', function(){
 //     return 'Contato PUT';
-// }); 
+// });
 
-Route::get('/produto', 'ProdutoController@index');
+Route::get('/produto', 'ProdutoController@index')->name('produto');
 
-Route::post('/produto', 'ProdutoController@criar');
+Route::get('/produto/adicionar', 'ProdutoController@Adicionar')->name('adicionar');
 
-Route::put('/produto', 'ProdutoController@editar');
-
+Route::post('/produto/salvar', 'ProdutoController@Salvar')->name('salvar');
