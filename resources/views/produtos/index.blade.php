@@ -28,10 +28,18 @@
                             <td>{{ $produto->nome }}</td>
                             <td>{{ $produto->categoria }}</td>
                             <td>{{ $produto->valor }}</td>
+                            {{-- <td>
+                             <img width="100" src="{{ asset($produto->imagem)}}">
+
+                            </td>    --}}
                             <td>{{ $produto->publicado }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('editar', $produto->id )}}">Editar</a>
-                                <a class="btn btn-secondary">Excluir</a>
+                            <form action="{{ route('deletar' , $produto->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-secondary">Excluir</button>
+                            </form>
                             </td>
                         </tr>
                     @endforeach

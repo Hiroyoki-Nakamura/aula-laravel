@@ -24,9 +24,21 @@ class ProdutoController extends Controller
 
     public function salvar(Request $req)
     {
+        // $produto = $req->all();
+        
+        // if($req->hasFile('imagem')){
+        //     $imagem = $req ->file('imagem');
+        //     $num = rand(1111, 9999);
+        //     $dir = 'img/produtos/';
+        //     $ext = $imagem->guessClientExtension();
+        //     $nomeImagem = 'imagem_' . $num . '.' . $ext;
+        //     $imagem->move($dir, $nomeImagem);
+        //     $produto['imagem'] = $dir . $nomeImagem;
+        // }
+
         Produto::create($req->all());
 
-        $req->session()->flash('mensagem', 'Produto adicionado com sucesso!');
+        $req->session()->flash('mensagem', "$req->categoria $req->nome adicionado com sucesso!");
 
         return redirect()->route('produto');
     }
@@ -39,11 +51,21 @@ class ProdutoController extends Controller
 
     public function atualizar(Request $req, $id)
     {
-        $produto = $req->all();
-        Produto::find($id)->update($produto);
+        $requisicao = $req->all();
+        $produto = Produto::find($id);
+        $produto->update($requisicao);
 
-        $req->session()->flash('mensagem', 'Produto atualizado com sucesso!');
+        $req->session()->flash('mensagem', "$produto->categoria $produto->nome atualizado com sucesso!");
 
+        return redirect()->route('produto');
+    }
+
+    public function deletar(Request $req, $id)
+    {
+        $produto = Produto::find($id);
+        $produto->delete();
+        // Produto::find($id)->delete();
+        $req->session()->flash('mensagem', "$produto->categoria $produto->nome excluido com sucesso!");
         return redirect()->route('produto');
     }
 }
