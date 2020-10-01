@@ -4,7 +4,11 @@
 
 @section('conteudo')
     <div class="container">
-        <h3>Carrinho Produtos</h3>
+        <h3>Carrinho de Produtos</h3>
+        @if(!empty($mensagem))
+        <div class="alert alert-success">{{ $mensagem }}
+        </div>
+        @endif
         <div class="row">
             <table class="table">
                 <thead>

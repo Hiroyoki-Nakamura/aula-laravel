@@ -8,10 +8,13 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
         $produtos = Produto::all();
-        return view('produtos.index', compact('produtos'));
+
+        $mensagem = $req->session()->get('mensagem');
+
+        return view('produtos.index', compact('produtos', 'mensagem'));
     }
 
     public function adicionar()
@@ -22,6 +25,9 @@ class ProdutoController extends Controller
     public function Salvar(Request $req)
     {
         Produto::create($req->all());
+
+        $req->session()->flash('mensagem', 'Produto adicionado com sucesso!');
+
         return redirect()->route('produto');
     }
 }
