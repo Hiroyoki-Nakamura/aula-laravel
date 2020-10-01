@@ -17,7 +17,7 @@ class CreateProdutosTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('categoria');
-            $table->float('valor');
+            $table->double('valor');
             $table->string('imagem');
             $table->timestamps();
         });

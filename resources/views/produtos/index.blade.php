@@ -4,7 +4,7 @@
 
 @section('conteudo')
     <div class="container">
-        <h3>Carrinho de Produtos</h3>
+        <h3>Estoque de Produtos</h3>
         @if(!empty($mensagem))
         <div class="alert alert-success">{{ $mensagem }}
         </div>
@@ -30,7 +30,7 @@
                             <td>{{ $produto->valor }}</td>
                             <td>{{ $produto->publicado }}</td>
                             <td>
-                                <a class="btn btn-primary">Adicionar</a>
+                                <a class="btn btn-primary" href="{{ route('editar', $produto->id )}}">Editar</a>
                                 <a class="btn btn-secondary">Excluir</a>
                             </td>
                         </tr>

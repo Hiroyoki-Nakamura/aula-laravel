@@ -1,14 +1,14 @@
 <div class="form-group">
     <label for="nome">Nome</label>
-    <input type="text" class="form-control" id="nome" name="nome">
+<input type="text" class="form-control" id="nome" name="nome" value="{{ $produto->nome ?? '' }}">
 </div>
 <div class="form-group">
     <label for="categoria">Categoria</label>
-    <input type="text" class="form-control" id="categoria" name="categoria">
+    <input type="text" class="form-control" id="categoria" name="categoria"value="{{ $produto->categoria ?? '' }}">
 </div>
 <div class="form-group">
     <label for="valor">Valor</label>
-    <input type="text" class="form-control" id="valor" name="valor">
+<input type="text" class="form-control" id="valor" name="valor" value="{{ $produto->valor ?? '' }}">
 </div>
 <div class="form-group">
     <label for="imagem">Imagem</label>

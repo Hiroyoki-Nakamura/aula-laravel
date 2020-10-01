@@ -36,3 +36,7 @@ Route::get('/produtos', 'ProdutoController@index')->name('produto');
 Route::get('/produtos/adicionar', 'ProdutoController@adicionar')->name('adicionar');
 
 Route::post('/produtos/salvar', 'ProdutoController@salvar')->name('salvar');
+
+Route::get('/produtos/editar/{id}', 'ProdutoController@editar')->name('editar');
+
+Route::put('/produtos/atualizar/{id}', 'ProdutoController@atualizar')->name('atualizar');
