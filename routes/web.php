@@ -31,8 +31,8 @@ Route::get('/', function () {
 //     return 'Contato PUT';
 // });
 
-Route::get('/produto', 'ProdutoController@index')->name('produto');
+Route::get('/produtos', 'ProdutoController@index')->name('produto');
 
-Route::get('/produto/adicionar', 'ProdutoController@Adicionar')->name('adicionar');
+Route::get('/produtos/adicionar', 'ProdutoController@adicionar')->name('adicionar');
 
-Route::post('/produto/salvar', 'ProdutoController@Salvar')->name('salvar');
+Route::post('/produtos/salvar', 'ProdutoController@salvar')->name('salvar');
