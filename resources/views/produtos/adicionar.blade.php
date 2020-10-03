@@ -7,7 +7,8 @@
     <div class="container">
         <h3>Adiconar Produtos</h3>
         <div class="row">
-            <form action="{{ route('salvar') }}" method="post">
+            <form action="{{ route('salvar') }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @include('produtos.form')
                 <button type="submit" class="btn btn-success">Salvar</button>

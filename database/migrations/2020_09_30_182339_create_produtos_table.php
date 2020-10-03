@@ -19,6 +19,7 @@ class CreateProdutosTable extends Migration
             $table->string('categoria');
             $table->double('valor');
             $table->string('imagem');
+            $table->string('publicado');
             $table->timestamps();
         });
     }

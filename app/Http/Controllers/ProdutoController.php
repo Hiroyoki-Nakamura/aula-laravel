@@ -24,19 +24,17 @@ class ProdutoController extends Controller
 
     public function salvar(Request $req)
     {
-        // $produto = $req->all();
-        
-        // if($req->hasFile('imagem')){
-        //     $imagem = $req ->file('imagem');
-        //     $num = rand(1111, 9999);
-        //     $dir = 'img/produtos/';
-        //     $ext = $imagem->guessClientExtension();
-        //     $nomeImagem = 'imagem_' . $num . '.' . $ext;
-        //     $imagem->move($dir, $nomeImagem);
-        //     $produto['imagem'] = $dir . $nomeImagem;
-        // }
+        $produto = $req->all();
 
-        Produto::create($req->all());
+        if (isset($produto['publicado'])) {
+            $produto['publicado'] = 'sim';
+        }
+        
+        if ($req->hasFile('imagem')){
+            $produto['imagem'] = $this->tratarImagem($req, $produto);
+        }
+
+        Produto::create($produto);
 
         $req->session()->flash('mensagem', "$req->categoria $req->nome adicionado com sucesso!");
 
@@ -51,11 +49,22 @@ class ProdutoController extends Controller
 
     public function atualizar(Request $req, $id)
     {
-        $requisicao = $req->all();
-        $produto = Produto::find($id);
-        $produto->update($requisicao);
+        $produto = $req->all();
 
-        $req->session()->flash('mensagem', "$produto->categoria $produto->nome atualizado com sucesso!");
+        if(isset($produto['publicado'])){
+            $produto['publicado'] = 'sim';
+        }else{
+            $produto['publicado'] = 'nao';
+        }
+
+        if($req->hasFile('imagem')){
+            $produto['imagem'] = $this->tratarImagem($req, $produto);
+        }
+
+        $produtoSelecionado = Produto::find($id);
+        $produtoSelecionado->update($produto);
+
+        $req->session()->flash('mensagem', "$produtoSelecionado->categoria $produtoSelecionado->nome atualizado com sucesso!");
 
         return redirect()->route('produto');
     }
@@ -67,5 +76,17 @@ class ProdutoController extends Controller
         // Produto::find($id)->delete();
         $req->session()->flash('mensagem', "$produto->categoria $produto->nome excluido com sucesso!");
         return redirect()->route('produto');
+    }
+
+    public function tratarImagem(Request $req, $produto)
+    {
+        $imagem = $req->file('imagem');
+        $num = rand(1111, 9999);
+        $dir = 'public/imgProdutos/';
+        $ext = $imagem->guessClientExtension();
+        $nomeImagem = 'imagem_' . $num . '.' . $ext;
+        $imagem->move($dir, $nomeImagem);
+
+        return $dir . $nomeImagem;
     }
 }

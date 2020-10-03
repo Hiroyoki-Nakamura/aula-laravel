@@ -42,3 +42,7 @@ Route::get('/produtos/editar/{id}', 'ProdutoController@editar')->name('editar');
 Route::put('/produtos/atualizar/{id}', 'ProdutoController@atualizar')->name('atualizar');
 
 Route::delete('/produtos/deletar/{id}', 'ProdutoController@deletar')->name('deletar');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

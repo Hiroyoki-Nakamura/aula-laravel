@@ -7,7 +7,7 @@
     <div class="container">
         <h3>Editar Produtos</h3>
         <div class="row">
-            <form action="{{ route('atualizar', $produto->id) }}" method="post">
+            <form action="{{ route('atualizar', $produto->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="put">
                 @include('produtos.form')

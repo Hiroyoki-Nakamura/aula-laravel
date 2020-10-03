@@ -4,11 +4,23 @@
 
 @section('conteudo')
     <div class="container">
+        <div class="row mt-5 mb-2">
+            <div class="col-9">
         <h3>Estoque de Produtos</h3>
+            </div>
+            <div class="col-3">
+            <a class="btn btn-success" href="{{ route('adicionar') }}">
+                Adicionar</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="="col-12>
         @if(!empty($mensagem))
         <div class="alert alert-success">{{ $mensagem }}
         </div>
         @endif
+            </div>
+        </div>
         <div class="row">
             <table class="table">
                 <thead>
@@ -17,6 +29,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Categoria</th>
                         <th scope="col">Valor</th>
+                        <th scope="col">Imagem</th>
                         <th scope="col">Publicado</th>
                         <th scope="col">Ações</th>
                     </tr>
@@ -28,10 +41,10 @@
                             <td>{{ $produto->nome }}</td>
                             <td>{{ $produto->categoria }}</td>
                             <td>{{ $produto->valor }}</td>
-                            {{-- <td>
-                             <img width="100" src="{{ asset($produto->imagem)}}">
+                            <td>
+                             <img width="50" src="{{ asset($produto->imagem)}}">
 
-                            </td>    --}}
+                            </td> 
                             <td>{{ $produto->publicado }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('editar', $produto->id )}}">Editar</a>
@@ -45,9 +58,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-        <div class="row">
-            <a class="btn btn-success" href="{{ route('adicionar') }}">Adicionar</a>
         </div>
     </div>
 @endsection
